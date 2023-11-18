@@ -2,7 +2,7 @@
 name = "aiohttpmiddleware"
 version = "0.1.0"
 description = ""
-authors = ["ArtemSerdechnyi <artem.serdechnyy@gmail.com>"]
+authors = ["ArtemSerdechnyi <serdechnyi.art@gmail.com"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
