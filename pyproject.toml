@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "aiohttpmiddleware"
 version = "0.1.0"
-description = ""
-authors = ["ArtemSerdechnyi <serdechnyi.art@gmail.com"]
+description = "Simple integrations aiohttp in Scrapy."
+license = "BSD-3-Clause"
+authors = ["Artem Serdechnyi <serdechnyi.art@gmail.com"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
