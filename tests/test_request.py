@@ -1,5 +1,7 @@
 from unittest import TestCase
 
+from scrapy import Request
+
 from scrapy_aiohttp import AiohttpRequest
 
 
@@ -10,6 +12,8 @@ class TestAiohttpRequest(TestCase):
         self.assertEqual(request.url, url)
         self.assertIsNone(request.meta.get("aiohttp"))
         request = AiohttpRequest(url, meta={"aiohttp": True})
+        self.assertIsNotNone(request.meta.get("aiohttp"))
+        request = Request(url, meta={"aiohttp": True})
         self.assertIsNotNone(request.meta.get("aiohttp"))
 
     def test_aiohttp_meta_validation(self):
