@@ -9,9 +9,9 @@ from scrapy_aiohttp import AiohttpServer
 
 mock_request = make_mocked_request(
     method="GET",
-    path=f"/request/https://www.python.org/",
+    path=f"/request/https://httpbin.org/status/200",
     headers={},
-    match_info={"url": "https://www.python.org/"}
+    match_info={"url": "https://httpbin.org/status/200"}
 )
 
 
@@ -78,7 +78,7 @@ class AsyncTestAiohttpServer(IsolatedAsyncioTestCase):
 
         server = AiohttpServer(server_url="http://localhost:8080/")
         server.run()
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(3)
         self.assertTrue(server.handlers)
         status = await send_request_get_status("http://localhost:8080/error")
         self.assertEqual(status, 404)
