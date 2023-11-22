@@ -3,7 +3,7 @@ name = "scrapy_aiohttp"
 version = "0.1.0"
 description = "Simple integrations aiohttp in Scrapy."
 license = "BSD-3-Clause"
-authors = ["Artem Serdechnyi <serdechnyi.art@gmail.com"]
+authors = ["Artem Serdechnyi <serdechnyi.art@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
