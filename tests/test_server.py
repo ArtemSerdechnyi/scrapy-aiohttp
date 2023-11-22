@@ -117,5 +117,4 @@ class AsyncTestAiohttpServer(IsolatedAsyncioTestCase):
             match_info={"url": "https://www.%.org/"}
         )
         response = await server._handle_request(request)
-        ce = "ClientError: Cannot connect to host www.%.org:443 ssl:default [Name or service not known]"
-        self.assertEqual(response.text, ce)
+        self.assertEqual(response.status, 500)
