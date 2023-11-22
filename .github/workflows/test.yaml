@@ -30,6 +30,11 @@ jobs:
           python -m unittest
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: |
+          if [ "${{ runner.os }}" = "Linux" ]; then
+            curl -Os https://uploader.codecov.io/latest/linux/codecov
+          else
+            curl -Os https://uploader.codecov.io/latest/macos/codecov
+          fi
+          chmod +x codecov
+          ./codecov
