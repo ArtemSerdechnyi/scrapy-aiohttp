@@ -111,7 +111,7 @@ class AiohttpServer:
         url = request.match_info.get("url")
         request_headers = self._get_request_headers(request)
         try:
-            async with ClientSession(headers=request_headers) as session:
+            async with ClientSession(headers=request_headers, trust_env=True) as session:
                 async with session.get(url=url) as response:
                     body = await response.read()
                     status = response.status
