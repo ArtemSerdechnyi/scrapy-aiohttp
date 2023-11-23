@@ -25,9 +25,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: |
-          python -m unittest
+          coverage run -m unittest
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
