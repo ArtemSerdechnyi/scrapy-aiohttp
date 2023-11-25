@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "scrapy_aiohttp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Scrapy middleware for sending requests with aiohttp."
 license = "BSD-3-Clause"
 authors = ["Artem Serdechnyi <serdechnyi.art@gmail.com>"]
