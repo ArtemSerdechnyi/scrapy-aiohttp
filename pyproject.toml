@@ -6,7 +6,7 @@ license = "BSD-3-Clause"
 authors = ["Artem Serdechnyi <serdechnyi.art@gmail.com>"]
 readme = "README.md"
 classifiers = [
-    "Development Status :: 2 - Alpha",
+    "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.10",
