@@ -1,4 +1,9 @@
 # scrapy-aiohttp
+[![version](https://img.shields.io/pypi/v/scrapy-aiohttp.svg)](https://pypi.org/project/scrapy_aiohttp/)
+[![pyversions](https://img.shields.io/pypi/pyversions/scrapy_aiohttp.svg)](https://pypi.org/project/scrapy_aiohttp/)
+[![Tests](https://github.com/ArtemSerdechnyi/scrapy-aiohttp/actions/workflows/test.yaml/badge.svg)](https://github.com/ArtemSerdechnyi/scrapy-aiohttp/actions/workflows/test.yaml)
+[![codecov](https://codecov.io/github/ArtemSerdechnyi/scrapy-aiohttp/graph/badge.svg?token=9PQ8BISKN4)](https://codecov.io/github/ArtemSerdechnyi/scrapy-aiohttp)
+
 
 This library allows integration of
 [aiohttp](https://github.com/aio-libs/aiohttp) with
