@@ -5,10 +5,13 @@
 [![codecov](https://codecov.io/github/ArtemSerdechnyi/scrapy-aiohttp/graph/badge.svg?token=9PQ8BISKN4)](https://codecov.io/github/ArtemSerdechnyi/scrapy-aiohttp)
 
 
-This library allows integration of
+This library simply integrates
 [aiohttp](https://github.com/aio-libs/aiohttp) with
-[Scrapy](https://github.com/scrapy/scrapy). It was created to solve problems
-that arise when working with sites that restrict access for standard Scrapy requests.
+[Scrapy](https://github.com/scrapy/scrapy), 
+addressing challenges encountered when dealing with websites imposing 
+restrictions on standard Scrapy requests. Specifically, it simply 
+resolves the 403 Forbidden issue often encountered when utilizing 
+Scrapy's built-in requests.
 
 ## Installation
 
