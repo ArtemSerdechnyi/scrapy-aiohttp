@@ -41,21 +41,19 @@ DOWNLOAD_HANDLERS = {
 3. Set up aiohttp request headers configuration to `settings.py` like this:
 
 ```python
-from urllib.parse import urlparse
+from scrapy_aiohttp.utils import DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG
 
-DEFAULT_REQUEST_HEADERS_CONFIG = {
-    "Host": lambda request: urlparse(request.match_info.get("url")).hostname,
-    "Content-Type": "text/html",
-    "User-Agent": None,
-}
+AIOHTTP_REQUEST_HEADERS_CONFIG = DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG
 ```
 
 Type `dict[str, str | Callable[[aiohttp.web.Request], str] | None]`
 
-The `DEFAULT_REQUEST_HEADERS_CONFIG` serves as an interface for inheriting headers from a Scrapy request and reusing
+The `AIOHTTP_REQUEST_HEADERS_CONFIG` serves as an interface for inheriting headers from a Scrapy request and reusing
 them to create an aiohttp request.
 
-Here's how you can customize `DEFAULT_REQUEST_HEADERS_CONFIG`:
+`DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG` is initialized with the values given below in the example.
+
+Here's how you can customize `AIOHTTP_REQUEST_HEADERS_CONFIG` using the following guidelines:
 
 * If the header value is a `Callable` object (a function), it gets executed with the HTTP request
   object ([`aiohttp.web.Request`](https://docs.aiohttp.org/en/stable/web_reference.html#:~:text=class%20aiohttp.web.Request))
@@ -73,7 +71,9 @@ Here's how you can customize `DEFAULT_REQUEST_HEADERS_CONFIG`:
    {"User-Agent": None}
    ```
 
-**Note**: Headers missing in `DEFAULT_REQUEST_HEADERS_CONFIG` **will not be applied** to the aiohttp request.
+**Note**: Headers missing in `AIOHTTP_REQUEST_HEADERS_CONFIG` **will not be applied** to the aiohttp request! 
+
+Ensure that all necessary headers are defined to meet your specific requirements.
 
 ## Usage
 

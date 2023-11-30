@@ -5,7 +5,8 @@ from scrapy.crawler import Crawler
 from scrapy.http import Response
 
 from scrapy_aiohttp import AiohttpRequest, AiohttpMiddleware, AiohttpServer
-from scrapy_aiohttp.utils import SimpleSpider, ServerNotAliveError, DEFAULT_REQUEST_HEADERS_CONFIG
+from scrapy_aiohttp.utils import ServerNotAliveError, DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG
+from scrapy_aiohttp.utils.simple_spider import SimpleSpider
 
 
 class TestAiohttpMiddleware(TestCase):
@@ -16,7 +17,7 @@ class TestAiohttpMiddleware(TestCase):
         spidercls=SimpleSpider,
         settings={
             "AIOHTTP_SERVER_URL": "http://localhost:8080/",
-            "AIOHTTP_REQUEST_HEADERS_CONFIG": DEFAULT_REQUEST_HEADERS_CONFIG,
+            "AIOHTTP_REQUEST_HEADERS_CONFIG": DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG,
         },
     )
 
