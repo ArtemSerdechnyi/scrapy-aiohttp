@@ -4,7 +4,7 @@ from scrapy import Request
 from scrapy.http import Response
 from scrapy.crawler import Crawler
 
-from utils.exeptions import ServerNotAliveError
+from utils.exceptions import ServerNotAliveError
 from utils.types import RequestHeaders
 from .request import AiohttpRequest
 from .server import AiohttpServer

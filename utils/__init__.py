@@ -1,4 +1,4 @@
-from .exeptions import (
+from .exceptions import (
     ServerNotAliveError,
 )
 from .types import (
