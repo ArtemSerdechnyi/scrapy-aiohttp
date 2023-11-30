@@ -1,5 +1,6 @@
 from .exceptions import (
     ServerNotAliveError,
+    SettingVariableNotFoundError,
 )
 from .types import (
     RequestHeaders,

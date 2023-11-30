@@ -5,7 +5,8 @@ from scrapy.crawler import Crawler
 from scrapy.http import Response
 
 from scrapy_aiohttp import AiohttpRequest, AiohttpMiddleware, AiohttpServer
-from scrapy_aiohttp.utils import ServerNotAliveError, DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG
+from scrapy_aiohttp.utils import ServerNotAliveError, SettingVariableNotFoundError, \
+    DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG
 from scrapy_aiohttp.utils.simple_spider import SimpleSpider
 
 
@@ -46,6 +47,20 @@ class TestAiohttpMiddleware(TestCase):
     def test_from_crawler(self):
         self.assertIsInstance(self.middleware, AiohttpMiddleware)
         self.assertEqual(self.middleware.server_url, self.crawler.settings["AIOHTTP_SERVER_URL"])
+
+        with self.assertRaises(SettingVariableNotFoundError) as e:
+            AiohttpMiddleware.from_crawler(Crawler(
+                spidercls=SimpleSpider,
+                settings={"AIOHTTP_SERVER_URL": "http://localhost:8080/"},
+            ))
+        self.assertEqual(str(e.exception), "Setting variable 'AIOHTTP_REQUEST_HEADERS_CONFIG' not found.")
+
+        with self.assertRaises(SettingVariableNotFoundError) as e:
+            AiohttpMiddleware.from_crawler(Crawler(
+                spidercls=SimpleSpider,
+                settings={"AIOHTTP_REQUEST_HEADERS_CONFIG": DEFAULT_AIOHTTP_REQUEST_HEADERS_CONFIG},
+            ))
+        self.assertEqual(str(e.exception), "Setting variable 'AIOHTTP_SERVER_URL' not found.")
 
     def test_convert_request(self):
         url = "https://www.python.org/"

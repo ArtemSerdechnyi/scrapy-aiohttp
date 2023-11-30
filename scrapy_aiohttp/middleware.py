@@ -4,13 +4,18 @@ from scrapy import Request
 from scrapy.http import Response
 from scrapy.crawler import Crawler
 
-from scrapy_aiohttp.utils import ServerNotAliveError
-from scrapy_aiohttp.utils import RequestHeaders
+from scrapy_aiohttp.utils import (
+    RequestHeaders,
+    ServerNotAliveError,
+    SettingVariableNotFoundError
+)
 from .request import AiohttpRequest
 from .server import AiohttpServer
 
 
 class AiohttpMiddleware:
+    """Middleware for integrating aiohttp with Scrapy."""
+
     _server: AiohttpServer | None = None
 
     def __init__(self, server_url, aiohttp_request_headers_config):
@@ -35,17 +40,25 @@ class AiohttpMiddleware:
     @classmethod
     def from_crawler(cls, crawler: Crawler):
         settings = crawler.settings
-        server_url = settings.get('AIOHTTP_SERVER_URL')
+        server_url = settings.get("AIOHTTP_SERVER_URL")
         aiohttp_request_headers_config = settings.get("AIOHTTP_REQUEST_HEADERS_CONFIG")
+
+        if server_url is None:
+            raise SettingVariableNotFoundError("AIOHTTP_SERVER_URL")
+        if aiohttp_request_headers_config is None:
+            raise SettingVariableNotFoundError("AIOHTTP_REQUEST_HEADERS_CONFIG")
+
         return cls(
             server_url,
             aiohttp_request_headers_config,
         )
 
     def process_request(self, request: AiohttpRequest | Request, spider) -> AiohttpRequest | None:
+        """Process the Scrapy request and convert it to an AiohttpRequest."""
+
         if request.meta.get("_original_url"):
             return
-        elif request.meta.get('aiohttp') is True:
+        elif request.meta.get("aiohttp") is True:
             request = self._convert_request(request)
 
         if not isinstance(request, AiohttpRequest):
@@ -60,6 +73,8 @@ class AiohttpMiddleware:
 
     @staticmethod
     def _convert_request(request: Request) -> AiohttpRequest:
+        """Convert a Scrapy Request to an AiohttpRequest."""
+
         if isinstance(request, AiohttpRequest):
             return request
         return AiohttpRequest(
