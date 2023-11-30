@@ -9,7 +9,7 @@ from aiohttp import web, ClientSession, ClientResponseError, ClientError
 from aiohttp.web import middleware, Request
 from multidict import CIMultiDictProxy, CIMultiDict
 
-from utils.types import RequestHeaders
+from scrapy_aiohttp.utils import RequestHeaders
 
 
 class AiohttpServer:
